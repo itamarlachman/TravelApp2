@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import il.co.examplefinalproject2.interfaces.DataResult;
 import il.co.examplefinalproject2.interfaces.IDataSource;
@@ -40,6 +41,10 @@ public class FireBase implements IDataSource {
                     }
                 });
 
+    }
+
+    public void lastAccess(Date date) {
+        db.getReference("lastAccess").setValue(date);
     }
 
     @Override

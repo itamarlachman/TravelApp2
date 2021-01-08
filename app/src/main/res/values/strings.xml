@@ -11,4 +11,10 @@
     <string name="my_travels">My Travels</string>
     <string name="history">History</string>
     <string name="open">Open</string>
+    <string name="prompt_email">Enter Your Email</string>
+    <string name="prompt_password">Enter Your Password</string>
+    <string name="action_sign_in_short">Sig-In</string>
+    <string name="login">LOGIN</string>
+    <string name="prompt_name">Enter You Name</string>
+    <string name="register">Register</string>
 </resources>
