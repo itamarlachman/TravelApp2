@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Travel2</string>
+    <string name="navigation_drawer_open">Open </string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="nav_header_title">Travel | 2</string>
+    <string name="nav_header_subtitle">ourexpertize@android.com</string>
+    <string name="nav_header_desc">Social Traveling</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="open_travels">Open Travels</string>
+    <string name="my_travels">My Travels</string>
+    <string name="history">History</string>
+    <string name="open">Open</string>
+</resources>

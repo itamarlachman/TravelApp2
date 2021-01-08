@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/open_travels"
+            android:icon="@drawable/open_travels"
+            android:title="@string/open_travels" />
+        <item
+            android:id="@+id/my_travels"
+            android:icon="@drawable/gallery"
+            android:title="@string/my_travels" />
+        <item
+            android:id="@+id/history"
+            android:icon="@drawable/slideshow"
+            android:title="@string/history" />
+    </group>
+</menu>
