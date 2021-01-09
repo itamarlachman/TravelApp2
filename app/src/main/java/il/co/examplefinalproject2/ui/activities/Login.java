@@ -15,17 +15,18 @@ import il.co.examplefinalproject2.ui.viewmodels.LoginViewModel;
 import il.co.examplefinalproject2.utils.DateUtils;
 import il.co.examplefinalproject2.utils.DialogUtils;
 import il.co.examplefinalproject2.utils.Globals;
+import il.co.examplefinalproject2.utils.SharedPrefUtils;
 
 public class Login extends AppCompatActivity {
 
     protected LoginViewModel viewModel;
     protected EditText name,email,password;
     protected  DialogUtils dialogUtils;
+    protected SharedPrefUtils sharedPrefUtils;
 
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 
     @Override
@@ -35,8 +36,18 @@ public class Login extends AppCompatActivity {
         registerViews();
         registerActions();
         registerUtils();
+        loadCompany();
         test();
 
+    }
+
+    private void loadCompany() {
+        Globals.company = sharedPrefUtils.loadCompany();
+        if (Globals.company != null) {
+            name.setText(Globals.company.getName());
+            email.setText(Globals.company.getEmail());
+            password.setText(Globals.company.getPassword());
+        }
     }
 
     private void test() {
@@ -45,6 +56,7 @@ public class Login extends AppCompatActivity {
 
     private void registerUtils() {
         dialogUtils = new DialogUtils(Login.this);
+        sharedPrefUtils = new SharedPrefUtils(Login.this);
     }
 
     private void registerViews() {
@@ -63,6 +75,7 @@ public class Login extends AppCompatActivity {
                         (dataResult.getOperation().equals(DataResult.Operation.Login) ||
                                 dataResult.getOperation().equals(DataResult.Operation.Register)))
                 {
+                    saveCompany((Globals.company));
                     startMain(dataResult);
                 } else {
                     if ( dataResult.getOperation().equals(DataResult.Operation.Login))
@@ -78,8 +91,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    Company company = new Company(email.getText().toString(),password.getText().toString());
-                    viewModel.SignIn(company);
+                    Globals.company = new Company(email.getText().toString(),password.getText().toString());
+                    viewModel.SignIn(Globals.company);
 
                 } catch (Exception ex) {
                     dialogUtils.showError(ex);
@@ -99,6 +112,10 @@ public class Login extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void saveCompany(Company company) {
+        sharedPrefUtils.saveCompany(company);
     }
 
     private void startMain(DataResult dataResult) {

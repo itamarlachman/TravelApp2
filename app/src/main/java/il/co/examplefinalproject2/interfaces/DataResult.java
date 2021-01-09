@@ -7,7 +7,9 @@ public class DataResult {
         Register,
         Add,
         Update,
-        Select;
+        Select,
+        NewTravels,
+        MyTravels
     }
 
     public Exception getException() {

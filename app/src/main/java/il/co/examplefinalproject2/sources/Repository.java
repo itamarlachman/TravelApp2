@@ -16,8 +16,6 @@ public class Repository {
         switch (type) {
             case FireBase:
                 return fireBase;
-            case Room:
-                return room;
         }
         return  fireBase;
     }

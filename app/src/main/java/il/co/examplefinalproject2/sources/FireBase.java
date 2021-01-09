@@ -16,6 +16,7 @@ import java.util.Date;
 
 import il.co.examplefinalproject2.interfaces.DataResult;
 import il.co.examplefinalproject2.interfaces.IDataSource;
+import il.co.examplefinalproject2.models.Company;
 import il.co.examplefinalproject2.models.Customer;
 import il.co.examplefinalproject2.models.Travel;
 
@@ -40,7 +41,6 @@ public class FireBase implements IDataSource {
                         data.postValue(res);
                     }
                 });
-
     }
 
     public void lastAccess(Date date) {
@@ -65,6 +65,58 @@ public class FireBase implements IDataSource {
                 DataResult res = new DataResult();
                 res.setEntity(DataResult.Entity.Travels);
                 res.setOperation(DataResult.Operation.Select);
+                res.setResult(travelsData);
+                data.postValue(res);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public void getNewTravels() {
+        travels.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Travel> travelsData = new ArrayList<>();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Travel travel = child.getValue(Travel.class);
+                    if (travel.getStatus().equals(Travel.Status.New))
+                        travelsData.add(travel);
+                }
+
+                DataResult res = new DataResult();
+                res.setEntity(DataResult.Entity.Travels);
+                res.setOperation(DataResult.Operation.NewTravels);
+                res.setResult(travelsData);
+                data.postValue(res);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    @Override
+    public void getMyTravels(final Company company) {
+        travels.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Travel> travelsData = new ArrayList<>();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Travel travel = child.getValue(Travel.class);
+                    if (travel.getStatus().equals(Travel.Status.Selected)) {
+                        if (travel.getCompany() != null) {
+                            if (travel.getCompany().getEmail().equals(company.getEmail())) {
+                                travelsData.add(travel);
+                            }
+                        }
+                    }
+                }
+
+                DataResult res = new DataResult();
+                res.setEntity(DataResult.Entity.Travels);
+                res.setOperation(DataResult.Operation.MyTravels);
                 res.setResult(travelsData);
                 data.postValue(res);
             }

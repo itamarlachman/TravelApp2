@@ -50,7 +50,7 @@ public class TravelsAdapter extends  RecyclerView.Adapter<TravelsAdapter.TravelV
         public TravelViewHolder(@NonNull View itemView) {
             super(itemView);
             view = itemView;
-            open = itemView.findViewById(R.id.open);
+            open = itemView.findViewById(R.id.select);
             date = itemView.findViewById(R.id.date);
             name = itemView.findViewById(R.id.name);
             tel = itemView.findViewById(R.id.tel);

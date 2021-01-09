@@ -17,4 +17,5 @@
     <string name="login">LOGIN</string>
     <string name="prompt_name">Enter You Name</string>
     <string name="register">Register</string>
+    <string name="select">Select Travel</string>
 </resources>

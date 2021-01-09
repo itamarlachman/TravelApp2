@@ -17,20 +17,12 @@ import il.co.examplefinalproject2.ui.viewmodels.HistoryViewModel;
 
 public class History extends Fragment {
 
-    private HistoryViewModel historyViewModel;
+    private HistoryViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        historyViewModel =
-                ViewModelProviders.of(this).get(HistoryViewModel.class);
+        viewModel =  ViewModelProviders.of(this).get(HistoryViewModel.class);
         View root = inflater.inflate(R.layout.history, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        historyViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         return root;
     }
 }

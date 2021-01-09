@@ -18,7 +18,6 @@ public class LoginViewModel extends ViewModel {
 
     protected FirebaseAuth auth = FirebaseAuth.getInstance();
     protected MutableLiveData<DataResult> liveData = new MutableLiveData<>();
-
     public MutableLiveData<DataResult> getLiveData() {
         return liveData;
     }
