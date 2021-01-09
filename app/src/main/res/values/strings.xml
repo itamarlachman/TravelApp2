@@ -18,4 +18,6 @@
     <string name="prompt_name">Enter You Name</string>
     <string name="register">Register</string>
     <string name="select">Select Travel</string>
+    <string name="rights">All rights reserved @ 2021</string>
+    <string name="app_title">Travels | 2</string>
 </resources>
