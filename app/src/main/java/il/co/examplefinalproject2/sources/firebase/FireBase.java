@@ -1,6 +1,10 @@
-package il.co.examplefinalproject2.sources;
+package il.co.examplefinalproject2.sources.firebase;
+
+import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -13,11 +17,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import il.co.examplefinalproject2.interfaces.DataResult;
 import il.co.examplefinalproject2.interfaces.IDataSource;
 import il.co.examplefinalproject2.models.Company;
 import il.co.examplefinalproject2.models.Customer;
+import il.co.examplefinalproject2.models.HistoryTravel;
 import il.co.examplefinalproject2.models.Travel;
 
 
@@ -26,6 +32,16 @@ public class FireBase implements IDataSource {
     FirebaseDatabase db = FirebaseDatabase.getInstance();
     DatabaseReference travels = db.getReference("travels");
     MutableLiveData<DataResult> data =  new MutableLiveData<DataResult>();
+
+    @Override
+    public void setApplication(Application application) {
+        // NOT USED.
+    }
+
+    @Override
+    public void setContext(Context context) {
+
+    }
 
     @Override
     public void saveTravel(Travel travel) {
@@ -95,6 +111,11 @@ public class FireBase implements IDataSource {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    @Override
+    public LiveData<List<HistoryTravel>> getHistory() {
+        return null;
     }
 
     @Override

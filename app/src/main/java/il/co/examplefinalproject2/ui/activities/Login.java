@@ -10,7 +10,7 @@ import android.widget.EditText;
 import il.co.examplefinalproject2.R;
 import il.co.examplefinalproject2.interfaces.DataResult;
 import il.co.examplefinalproject2.models.Company;
-import il.co.examplefinalproject2.sources.FireBase;
+import il.co.examplefinalproject2.sources.firebase.FireBase;
 import il.co.examplefinalproject2.ui.viewmodels.LoginViewModel;
 import il.co.examplefinalproject2.utils.DateUtils;
 import il.co.examplefinalproject2.utils.DialogUtils;

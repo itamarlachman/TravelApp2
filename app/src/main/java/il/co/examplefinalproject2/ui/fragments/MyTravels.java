@@ -40,6 +40,7 @@ public class MyTravels extends Fragment {
         listTravels.setAdapter(travelsAdapter);
 
         viewModel =  ViewModelProviders.of(this).get(MyTravelsViewModel.class);
+        viewModel.get_room().setContext(getContext());
         viewModel.getMyTravels(Globals.company);
         viewModel.getLiveData().observe(getViewLifecycleOwner(), new Observer<DataResult>() {
             @Override
@@ -54,9 +55,8 @@ public class MyTravels extends Fragment {
                                 Travel travel =  (Travel) result;
                                 travel.setCompany(Globals.company);
                                 travel.setStatus(Travel.Status.Finished);
+                                viewModel.saveHistoryTravel(travel);
                                 viewModel.saveTravel(travel);
-
-                                // TODO: save to history using ROOM.
                             }
                         });
 
